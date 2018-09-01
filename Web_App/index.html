@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="To Help Keep Your Job">
+	  <meta name="keywords" content="Try This, Try Saying, Bad looking Good, Alternative Swearing, Dear Staff, Work Slang, Work Swearing, Not Swearing At Work, Kindly Speak, Speak Coverter, Inner Expletives, Mussing of the Crazy, Management Speech, Managing Speech">
+  	<meta name="author" content="Timbre Freeman">
+    <link rel="icon" href="./img/v1_0_0gV_icon.ico">
+    <title>Alternative Swearing | Welcome</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- JavaScrip -->
+    <div id="JavaScripFiles">
+      <script src="./js/webApp.js"></script>
+      <script src="./js/disableScroll.js"></script>
+    </div>.
+  </head>
+  <body onresize="screenSizeUpdate();"><!-- onload="updateDatabase()" -->
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">Alternative</span> Swearing</h1>
+        </div>
+        <nav>
+          <ul>
+            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="download.html">Download's</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="showcase">
+      <div class="container">
+        <h1>Alternative to Swearing</h1>
+        <p>By using this can case less probles at work and other pubik aieras wile geting your pont a cross.</p>
+        <button type="button" class="button_2" id="showWebAppButton" onclick="startUpWebApp();">Web App</button>
+      </div>
+    </section>
+
+    <section id="webapp">
+      <div class="container">
+        <h1>Web App</h1>
+        <div id="desktopApp">
+          <div class="listItmes" id="evilDBoxList">
+            <h2 class="listTitle" id="evilTile">What you think:</h2>
+            <input type="text" id="evilInput" placeholder="You shud not be seeing this ... Somthing when wrong">
+            <img src="./img/search_pixel-perfect.png" id="evilSeach"></img>
+            <ul id="evilList" onwheel="scroling(event.deltaY);" onmouseenter="disableScroll();" onmouseleave="enableScroll();">
+            </ul>
+          </div>
+          <a id="arrow" style="display: none">&#x2194;</a>
+          <div class="listItmes" id="goodDBoxList">
+            <h2 class="listTitle" id="goodTile">What to say:</h2>
+            <input type="text" id="goodInput" placeholder="You shud not be seeing this ... Somthing when wrong">
+            <img src="./img/search_pixel-perfect.png" id="goodSeach"></img>
+            <ul id="goodList" onwheel="scroling(event.deltaY);" onmouseenter="disableScroll();" onmouseleave="enableScroll();">
+            </ul>
+          </div>
+        </div>
+        <div id="mobileApp">
+          <button type="button" class="button_1" id="WYTButton" onclick="aListButton(false);">What you think:</button>
+          <p id="WYTS">...</p>
+          <button type="button" class="button_1" id="WTSButton" onclick="aListButton(true);">What to say:</button>
+          <p id="WTSS">...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter">
+      <div class="container">
+        <h1><strike>Subscribe To Our Newsletter</strike></h1>
+        <form>
+          <input type="email" placeholder="Enter Email...">
+          <button type="button" class="button_1" onclick="alert('not working at this time');">Subscribe</button>
+          <!-- <button type="submit" class="button_1" onkeypress="alert('not working at this time');">Subscribe</button> -->
+        </form>
+      </div>
+    </section>
+
+    <section id="boxes">
+      <div class="container">
+        <div class="box">
+          <img src="./img/android_pixel-perfect.png">
+          <h3>Android</h3>
+          <p>Let you using it when your not by a computer and save privet list also offline</p>
+        </div>
+        <div class="box">
+          <img src="./img/windows_pixel-perfect.png">
+          <h3>Desktop</h3>
+          <p>Offline and privet list</p>
+        </div>
+        <div class="box">
+          <img src="./img/chrome_pixel-perfect.png">
+          <h3>Web Browser</h3>
+          <p>Can by use anyware</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Alternative Swearing, Copyright &copy; 2019</p>
+      <div>Some icons made by <a href="https://www.flaticon.com/authors/pixel-perfect">Pixelperfect</a> from <a href="https://www.flaticon.com/"  title="Flaticon">flaticon</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+    </footer>
+  </body>
+</html>
