@@ -51,7 +51,10 @@
             <ul id="evilList" onwheel="scroling(event.deltaY);" onmouseenter="disableScroll();" onmouseleave="enableScroll();">
             </ul>
           </div>
-          <a id="arrow" style="display: none">&#x2194;</a>
+          <!--<a id="arrow" style="display: none">&#x2194;</a>-->
+          <input type="range" min="0" max="100"
+          value="0" class="slider" id="sliderInput"
+          oninput="sliderInput(this);">
           <div class="listItmes" id="goodDBoxList">
             <h2 class="listTitle" id="goodTile">What to say:</h2>
             <input type="text" id="goodInput" placeholder="You shud not be seeing this ... Somthing when wrong">
