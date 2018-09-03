@@ -21,7 +21,7 @@ function startUpWebApp(){
   // set flag that web app has started
   webAppStarted = true;
   // set flat that it is desktop or mobile mode
-  if(screen.width < 768){
+  if(window.innerWidth < 768){
     desktopApp = false;
   }else {
     desktopApp = true;
@@ -60,10 +60,20 @@ function startUpWebApp(){
 
   // seting locashen of list
   showItmesLocat = 0;
+
+  // update slider value & slider locashen
+  var sliderIn = document.getElementById("sliderInput");
+  sliderIn.max = list.length - showItmesSize;
+  sliderIn.value = showItmesLocat;
+  //document.getElementById("sliderInput").style.height = (document.getElementById("evilDBoxList").clientHeight) + "px";
+  //sliderIn.style.position = "absolute";
+  //sliderIn.style.y = (document.getElementById("evilDBoxList").getBoundingClientRect.right);
+  //sliderIn.style.x = (document.getElementById("evilDBoxList").getBoundingClientRect.top);
+  //console.log(sliderIn);
 }
 
 function screenSizeUpdate() {
-  if(screen.width < 768){
+  if(window.innerWidth < 768){
     if(desktopApp){
       desktopApp = false;
     }
@@ -101,37 +111,59 @@ function updateListSize(top, bottom) {
   }
 }
 
+function sliderInput(slider) {
+  if(slider.value > showItmesLocat){
+    moveItmes(true, 1);
+  }else if (slider.value < showItmesLocat) {
+    moveItmes(false, 1);
+  }
+  //console.log("slider:" + slider.value + " sIL:" + showItmesLocat);
+}
+
 function scroling(move){
-  // moving itmes up
-  if(move > 0){
-    if(showItmesLocat < (list.length-showItmesSize)){
-      document.getElementById("evilItem" + showItmesLocat).style.display = "none";
-      document.getElementById("goodItem" + showItmesLocat).style.display = "none";
-      document.getElementById("evilItem" + (showItmesLocat+showItmesSize)).style.display = "block";
-      document.getElementById("goodItem" + (showItmesLocat+showItmesSize)).style.display = "block";
-      showItmesLocat++;
-      document.getElementById("arrow").style.display = "none";
-    }
+  if(move > 0){// moving itmes up
+    moveItmes(true, 1);
   }else if(move < 0) { // moving itmes down
-    if(showItmesLocat > 0){
-      document.getElementById("evilItem" + (showItmesLocat-1)).style.display = "block";
-      document.getElementById("goodItem" + (showItmesLocat-1)).style.display = "block";
-      document.getElementById("evilItem" + (showItmesLocat-1+showItmesSize)).style.display = "none";
-      document.getElementById("goodItem" + (showItmesLocat-1+showItmesSize)).style.display = "none";
-      showItmesLocat--;
-      document.getElementById("arrow").style.display = "none";
-    }
+    moveItmes(false, 1);
   }else {
-    alert("something when wrong with scroling value:" + move);
+    alert("something when wrong with scroling value1:" + move + " value2:" + moveBy);
+  }
+}
+
+function moveItmes(isUp, moveBy) {
+  if(isUp){// moving itmes up
+    for(var i = 0; i < (Math.abs(moveBy)); i++){
+      if(showItmesLocat < (list.length-showItmesSize)){
+        document.getElementById("evilItem" + showItmesLocat).style.display = "none";
+        document.getElementById("goodItem" + showItmesLocat).style.display = "none";
+        document.getElementById("evilItem" + (showItmesLocat+showItmesSize)).style.display = "block";
+        document.getElementById("goodItem" + (showItmesLocat+showItmesSize)).style.display = "block";
+        showItmesLocat++;
+        //document.getElementById("arrow").style.display = "none";
+      }
+    }
+  }else { // moving itmes down
+    for(var i = 0; i < (Math.abs(moveBy)); i++){
+      if(showItmesLocat > 0){
+        document.getElementById("evilItem" + (showItmesLocat-1)).style.display = "block";
+        document.getElementById("goodItem" + (showItmesLocat-1)).style.display = "block";
+        document.getElementById("evilItem" + (showItmesLocat-1+showItmesSize)).style.display = "none";
+        document.getElementById("goodItem" + (showItmesLocat-1+showItmesSize)).style.display = "none";
+        showItmesLocat--;
+        //document.getElementById("arrow").style.display = "none";
+      }
+    }
   }
   // update itmes
   updateListSize(showItmesLocat, showItmesLocat+showItmesSize);
+  // update slider value
+  document.getElementById("sliderInput").value = showItmesLocat;
 }
 
 function aListButton(isGood) {
   document.getElementById("mobileApp").style.display = "none";
   document.getElementById("desktopApp").style.display = "block";
-  document.getElementById("arrow").style.display = "none";
+  //document.getElementById("arrow").style.display = "none";
   if(isGood){
     document.getElementById("evilDBoxList").style.display = "none";
     document.getElementById("goodDBoxList").style.display = "block";
@@ -143,7 +175,7 @@ function aListButton(isGood) {
 
 function clickOnItem(item, isGood){
   //console.log(item.id);
-  if(desktopApp){
+  if(desktopApp){/*
     var arrow = document.getElementById("arrow");
     arrow.style.display = "initial";
     var bodyLocat = document.body.getBoundingClientRect();
@@ -155,7 +187,7 @@ function clickOnItem(item, isGood){
     }else {
       arrow.style.left = (itemLocat.right) + "px"; // x pos
       arrow.style.top = ((-bodyLocat.top) + itemLocat.top) + "px"; // y pos
-    }
+    }*/
   }else {
     if(isGood){
       document.getElementById("WTSS").innerHTML = item.innerHTML;

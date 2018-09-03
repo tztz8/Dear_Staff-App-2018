@@ -251,6 +251,18 @@ header a:hover{
   text-align: justify;
 }
 
+#webapp #sliderInput{
+  display: inline-block;
+  width: 5%;
+  /*height: 5%;*//
+  padding: 0;
+  /*width: 150px;
+  height: 20px;*/
+  margin: 0;
+  /*transform-origin: 75px 75px;*/
+  transform: rotate(90deg);
+}
+
 /* Sidebar */
 aside#sidebar{
   float:right;
