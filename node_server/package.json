@@ -1,0 +1,21 @@
+{
+  "name": "node_server",
+  "version": "1.0.0",
+  "description": "this is a json server and maby more in the fucher for the app I am working on A.S.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "json",
+    "js",
+    "server",
+    "node",
+    "tftinker"
+  ],
+  "author": "Timbre tftinker",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
