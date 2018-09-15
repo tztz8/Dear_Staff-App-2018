@@ -6,8 +6,6 @@ function setup() {
 
   var button = select('#add');
   button.mousePressed(addByButton);
-  var buttonPost = select('#postAdd');
-  buttonPost.mousePressed(addByButtonPost);
 }
 
 /*function draw() {
@@ -31,30 +29,12 @@ function addByButton() {
   console.log(keyIn, badIn, goodIn);
 
   loadJSON('/list/add/' + keyIn + '/' + badIn + '/' + goodIn, function (dataBack) {
-    /*if(dataBack.meg == "Access Granted"){
+    if(dataBack.meg == "Access Granted"){
       loadJSON('/list/get', gotDataUpdate);
     }else {
       alert(dataBack.meg);
-    }*/
-    console.log(dataBack);
+    }
   });
-}
-
-function addByButtonPost() {
-  var data = {
-    key: select('#key').value(),
-    badItme: select('#bad').value(),
-    goodItme: select('#good').value()
-  }
-  console.log(data.keyIn, data.badIn, data.goodIn);
-
-  httpPost('/list/add/', 'json', data, callBackFun, errorFun);
-  function callBackFun(result) {
-    console.log(result);
-  }
-  function errorFun(err) {
-    console.log(err);
-  }
 }
 
 function gotDataUpdate(data) {

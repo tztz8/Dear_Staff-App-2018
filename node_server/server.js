@@ -1,20 +1,18 @@
 console.log("Server is starting");
-
-//var tempKey = "Wmh2w3M7vTi34mkbNiNDZSKOsKZfr9GJ";
-var tempKey = "W!IOmA90w8fa9H8Zmgp@7Elpy&0sV@$z";
+var tempKey = "Wmh2w3M7vTi34mkbNiNDZSKOsKZfr9GJ";
 
 var fs = require('fs');
 var list = JSON.parse(fs.readFileSync("./json/list.json"));
-console.log("Start File Done");
 
+console.log("Start File Done");
 var express = require('express');
 var app = express();
 
-var server = app.listen(3000, function () {
+var server = app.listen(3000, listening);
+function listening() {
   console.log("listening. . . ");
-});
+}
 app.use(express.static("public_page"));
-app.use(express.json());
 
 app.get('/list/get', sendListJSON);
 function sendListJSON(request, response) {
@@ -24,16 +22,6 @@ function sendListJSON(request, response) {
 app.get('/list/add/:key?/:badItme/:goodItme', function (request, response) {
   var sendData = { meg: "", bad: "", good: "" , work: "no"};
   var dataIn = request.params;
-  //console.log(dataIn);
-  sendData.bad = dataIn.badItme;
-  sendData.good = dataIn.goodItme;
-  sendData.meg = "need to do post not get";
-  response.send(sendData);
-});
-
-app.post('/list/add', function (request, response) {
-  var sendData = { meg: "", bad: "", good: "" , work: "no"};
-  var dataIn = request.body;
   var keyPass = testKey(dataIn.key);
   sendData.bad = dataIn.badItme;
   sendData.good = dataIn.goodItme;
@@ -54,10 +42,7 @@ app.post('/list/add', function (request, response) {
     sendData.meg = "Access Denied";
     console.log("Wrong Key retive, Key:" + dataIn.key);
     response.send(sendData);
-  }/*
-  console.log(request.body);
-  var reply = {msg: "not done"}
-  response.send(reply);*/
+  }
 });
 
 app.get("/api/:key", function (request, response) {
