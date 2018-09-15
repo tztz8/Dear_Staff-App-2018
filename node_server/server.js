@@ -25,7 +25,7 @@ app.get('/list/add/:key?/:badItme/:goodItme', function (request, response) {
   var keyPass = testKey(dataIn.key);
   sendData.bad = dataIn.badItme;
   sendData.good = dataIn.goodItme;
-  if(key == tempKey){
+  if(keyPass){
     sendData.meg = "Access Granted";
     list.push([sendData.bad, sendData.good]);
     fs.writeFile('./json/list.json', JSON.stringify(list, null, 2), fileDone);
@@ -40,7 +40,7 @@ app.get('/list/add/:key?/:badItme/:goodItme', function (request, response) {
     }
   }else {
     sendData.meg = "Access Denied";
-    console.log("Wrong Key retive, Key:" + key);
+    console.log("Wrong Key retive, Key:" + dataIn.key);
     response.send(sendData);
   }
 });
@@ -55,6 +55,7 @@ app.get("/api/:key", function (request, response) {
   }
   response.send(sendData);
 });
+
 function testKey(key) {
   if(key == tempKey){
     return true;
