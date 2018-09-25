@@ -12,15 +12,16 @@
   </head>
   <body>
     <p>
-      API_Key:<input id="key">
+      Name:<input id="name" type="text">
       <br>
-      Bad:<input id="bad">
+      API_Key:<input id="key" type="text">
       <br>
-      Good:<input id="good">
+      Bad:<input id="bad" type="text">
       <br>
-      <!--<button id="add">ADD-Get</button>-->
-      <button id="postAdd">ADD-Post</button>
-      <button id="postRemove">Remove-Post</button>
+      Good:<input id="good" type="text">
+      <br>
+      <button id="postAdd" type="button" onclick="byButtonPost('/list/add');">ADD-Post</button>
+      <button id="postRemove" type="button" onclick="byButtonPost('/list/remove');">Remove-Post</button>
     </p>
   </body>
 </html>
