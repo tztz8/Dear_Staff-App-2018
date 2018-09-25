@@ -4,8 +4,8 @@ function setup() {
   //background(51);
   loadJSON('/list/get', gotData);
 
-  var button = select('#add');
-  button.mousePressed(addByButton);
+  //var button = select('#add');
+  //button.mousePressed(addByButton);
   var buttonPost = select('#postAdd');
   buttonPost.mousePressed(addByButtonPost);
 }
@@ -23,7 +23,7 @@ function gotData(data) {
     createP(data[i][1]);
   }
 }
-
+/*
 function addByButton() {
   var keyIn = select('#key').value();
   var badIn = select('#bad').value();
@@ -35,10 +35,10 @@ function addByButton() {
       loadJSON('/list/get', gotDataUpdate);
     }else {
       alert(dataBack.meg);
-    }*/
+    }*//*
     console.log(dataBack);
   });
-}
+}*/
 
 function addByButtonPost() {
   var data = {

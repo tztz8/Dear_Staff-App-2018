@@ -1,10 +1,11 @@
 console.log("Server is starting");
 
 //var tempKey = "Wmh2w3M7vTi34mkbNiNDZSKOsKZfr9GJ";
-var tempKey = "W!IOmA90w8fa9H8Zmgp@7Elpy&0sV@$z";
+//var tempKey = "W!IOmA90w8fa9H8Zmgp@7Elpy&0sV@$z";
 
 var fs = require('fs');
 var list = JSON.parse(fs.readFileSync("./json/list.json"));
+var keys = JSON.parse(fs.readFileSync("../Keys/api_keys.json"));
 console.log("Start File Done");
 
 var express = require('express');
@@ -20,17 +21,6 @@ app.get('/list/get', sendListJSON);
 function sendListJSON(request, response) {
   response.send(list);
 }
-
-app.get('/list/add/:key?/:badItme/:goodItme', function (request, response) {
-  var dataIn = request.params;
-  var sendData = {
-    meg: "need to do post not get",
-    bad: dataIn.badItme,
-    good: dataIn.goodItme,
-    work: "no"
-  };
-  response.send(sendData);
-});
 
 app.post('/list/add', function (request, response) {
   var sendData = { meg: "", bad: "", good: "" , work: "no"};
@@ -61,9 +51,9 @@ app.post('/list/add', function (request, response) {
   response.send(reply);*/
 });
 
-app.get("/api/:key", function (request, response) {
+app.post("/api", function (request, response) {
   var sendData = { meg: "", key: ""}
-  sendData.key = request.params.key;
+  sendData.key = request.body.key;
   if(testKey(sendData.key)){
     sendData.meg = "Access Granted";
   }else {
@@ -73,7 +63,7 @@ app.get("/api/:key", function (request, response) {
 });
 
 function testKey(key) {
-  if(key == tempKey){
+  if(key == keys.tempKey){
     return true;
   }else{
     return false;
