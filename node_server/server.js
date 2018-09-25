@@ -22,12 +22,13 @@ function sendListJSON(request, response) {
 }
 
 app.get('/list/add/:key?/:badItme/:goodItme', function (request, response) {
-  var sendData = { meg: "", bad: "", good: "" , work: "no"};
   var dataIn = request.params;
-  //console.log(dataIn);
-  sendData.bad = dataIn.badItme;
-  sendData.good = dataIn.goodItme;
-  sendData.meg = "need to do post not get";
+  var sendData = {
+    meg: "need to do post not get",
+    bad: dataIn.badItme,
+    good: dataIn.goodItme,
+    work: "no"
+  };
   response.send(sendData);
 });
 
