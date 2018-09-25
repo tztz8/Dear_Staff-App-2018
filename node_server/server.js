@@ -25,7 +25,7 @@ function sendListJSON(request, response) {
 app.post('/list/add', function (request, response) {
   var sendData = { meg: "", bad: "", good: "" , work: "no"};
   var dataIn = request.body;
-  var keyPass = testKey(dataIn.key);
+  var keyPass = testKey("temp", dataIn.key);
   sendData.bad = dataIn.badItme;
   sendData.good = dataIn.goodItme;
   if(keyPass){
@@ -51,10 +51,58 @@ app.post('/list/add', function (request, response) {
   response.send(reply);*/
 });
 
+app.post('/list/remove', function (request, response) {
+  var sendData = { meg: "", bad: "", good: "" , work: ""};
+  var dataIn = request.body;
+  var keyPass = testKey("temp", dataIn.key);
+  sendData.bad = dataIn.badItme;
+  sendData.good = dataIn.goodItme;
+  if(keyPass){
+    sendData.meg = "Access Granted";
+
+    if (!(sendData.bad == "")){
+      for(var i = 0; i < list.length; i++){
+        if(list[i][0] == sendData.bad){
+          sendData.work = "no, not Done";
+        }
+      }
+      if(sendData.work == ""){
+        sendData.work = "no, not found";
+      }
+    }else if (!(sendData.good == "")) {
+      for(var i = 0; i < list.length; i++){
+        if(list[i][1] == sendData.good){
+          sendData.work = "no, not Done";
+        }
+      }
+      if(sendData.work == ""){
+        sendData.work = "no, not found";
+      }
+    }else {
+      sendData.work = "no, no item was sent to be remove";
+    }
+    if (sendData.work == ""){
+      fs.writeFile('./json/list.json', JSON.stringify(list, null, 2), function (err) {
+        if(err != null){
+          console.log(err);
+          sendData.work = ("no, err:" + err);
+        }else {
+          sendData.work = "yes";
+        }
+      });
+    }
+  }else {
+    sendData.meg = "Access Denied";
+    sendData.work = "no";
+    console.log("Wrong Key retive, Key:" + dataIn.key);
+  }
+  response.send(sendData);
+});
+
 app.post("/api", function (request, response) {
   var sendData = { meg: "", key: ""}
   sendData.key = request.body.key;
-  if(testKey(sendData.key)){
+  if(testKey("temp", sendData.key)){
     sendData.meg = "Access Granted";
   }else {
     sendData.meg = "Access Denied";
@@ -62,10 +110,15 @@ app.post("/api", function (request, response) {
   response.send(sendData);
 });
 
-function testKey(key) {
-  if(key == keys.tempKey){
+function testKey(name, key) {
+  if((key == keys.tempKey)&(name == "temp")){
     return true;
-  }else{
+  }else {
+    for (var i = 0; i < keys.Users.length; i++) {
+      if((name == keys.Users[i].Name)&(key == keys.Users[i].apiKey)){
+        return true;
+      }
+    }
     return false;
   }
 }

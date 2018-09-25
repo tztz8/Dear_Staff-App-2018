@@ -1,0 +1,10 @@
+{
+  "tempKey": "123",
+  "Users": [
+    {
+      "Name": "testUser",
+      "password": "P@SSword",
+      "apiKey": "hfdlkjsar"
+    }
+  ]
+}

@@ -8,6 +8,8 @@ function setup() {
   //button.mousePressed(addByButton);
   var buttonPost = select('#postAdd');
   buttonPost.mousePressed(addByButtonPost);
+  var buttonPostRemove = select('#postRemove');
+  buttonPostRemove.mousePressed(removeByButtonPost);
 }
 
 /*function draw() {
@@ -49,6 +51,23 @@ function addByButtonPost() {
   console.log(data.keyIn, data.badIn, data.goodIn);
 
   httpPost('/list/add/', 'json', data, callBackFun, errorFun);
+  function callBackFun(result) {
+    console.log(result);
+  }
+  function errorFun(err) {
+    console.log(err);
+  }
+}
+
+function removeByButtonPost() {
+  var data = {
+    key: select('#key').value(),
+    badItme: select('#bad').value(),
+    goodItme: select('#good').value()
+  }
+  console.log(data.keyIn, data.badIn, data.goodIn);
+
+  httpPost('/list/remove/', 'json', data, callBackFun, errorFun);
   function callBackFun(result) {
     console.log(result);
   }
