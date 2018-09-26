@@ -10,6 +10,8 @@ function setup() {
     myRefresh(false, "");
   }else {
     aRF = false;
+    select('#name').value("temp");
+    select('#key').value("H7Wba2FsnIGuUncnKHgHxZeIUzdd1v%ZsIgprzlyaq9RwW&%v$q*BiJvnDChjW*TH2dy4Id4o6d97r1x%WkmnrPV$J5j@Wnp@$eA");
   }
   autoRefreshCheckbox.input(function () {aRF = !aRF; sessionStorage.setItem("aRF", aRF);});
 }
