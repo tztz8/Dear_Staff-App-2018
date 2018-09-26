@@ -25,7 +25,7 @@ function sendListJSON(request, response) {
 app.post('/list/add', function (request, response) {
   var sendData = { meg: "", bad: "", good: "" , work: "no"};
   var dataIn = request.body;
-  var keyPass = testKey("temp", dataIn.key);
+  var keyPass = testKey(dataIn.name, dataIn.key);
   sendData.bad = dataIn.badItme;
   sendData.good = dataIn.goodItme;
   if(keyPass){
@@ -54,7 +54,7 @@ app.post('/list/add', function (request, response) {
 app.post('/list/remove', function (request, response) {
   var sendData = { meg: "", bad: "", good: "" , work: ""};
   var dataIn = request.body;
-  var keyPass = testKey("temp", dataIn.key);
+  var keyPass = testKey(dataIn.name, dataIn.key);
   sendData.bad = dataIn.badItme;
   sendData.good = dataIn.goodItme;
   if(keyPass){

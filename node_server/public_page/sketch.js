@@ -1,18 +1,40 @@
+var aRF = false;
 function setup() {
   noCanvas();
-
   loadJSON('/list/get', gotData);
+
+  var autoRefreshCheckbox = select("#autoRefresh");
+  if (sessionStorage.getItem("aRF") == "true"){
+    aRF = true;
+    autoRefreshCheckbox.attribute('checked', null);
+    myRefresh(false, "");
+  }else {
+    aRF = false;
+  }
+  autoRefreshCheckbox.input(function () {aRF = !aRF; sessionStorage.setItem("aRF", aRF);});
 }
 
 function gotData(data) {
-  createP("<br><br>Bad Items:");
+  createP("<br>Bad Items:");
+  var itmes = [];
   for (var i = 0; i < data.length; i++) {
-    createP(data[i][0]);
+    if(!(i == 0)){
+      itmes.push("<br>" + data[i][0]);
+    }else {
+      itmes.push(data[i][0]);
+    }
   }
-  createP("<br><br>Good Items:");
+  createP(itmes);
+  itmes = [];
+  createP("<br>Good Items:");
   for (var i = 0; i < data.length; i++) {
-    createP(data[i][1]);
+    if(!(i == 0)){
+      itmes.push("<br>" + data[i][1]);
+    }else {
+      itmes.push(data[i][1]);
+    }
   }
+  createP(itmes);
 }
 
 function byButtonPost(url) {
@@ -27,14 +49,29 @@ function byButtonPost(url) {
   httpPost(url, 'json', data, callBackFun, errorFun);
   function callBackFun(result) {
     console.log(result);
+    myRefresh(true, result);
   }
   function errorFun(err) {
     console.log(err);
   }
 }
 
-function gotDataUpdate(data) {
-  createP("<br><br>Upate:");
-  createP(data[data.length-1][0]);
-  createP(data[data.length-1][1]);
+function myRefresh(notStart, result) {
+  if(aRF & notStart){
+    sessionStorage.setItem("name", select('#name').value());
+    sessionStorage.setItem("key", select('#key').value());
+    sessionStorage.setItem("badItme", select('#bad').value());
+    sessionStorage.setItem("goodItme", select('#good').value());
+    sessionStorage.setItem("result", result.work);
+    document.location.reload(true);
+  }else if (!notStart) {
+    select('#name').value(sessionStorage.getItem("name"));
+    select('#key').value(sessionStorage.getItem("key"));
+    select('#bad').value(sessionStorage.getItem("badItme"));
+    select('#good').value(sessionStorage.getItem("goodItme"));
+    if((!(sessionStorage.getItem("result") == "null")) & (!(sessionStorage.getItem("result") == ""))){
+      alert(sessionStorage.getItem("result"));
+      sessionStorage.setItem("result", null);
+    }
+  }
 }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>p5.js example</title>
-    <style> body {padding: 0; margin: 0;} </style>
+    <style> body {margin: auto; width: 60%; padding: 10px;} p{border: 3px solid #73AD21; text-align: center;} </style>
     <script src="/lib/p5.min.js"></script>
     <script src="/lib/addons/p5.dom.min.js"></script>
     <!--<script src="/lib/addons/p5.sound.min.js"></script>-->
@@ -22,6 +22,8 @@
       <br>
       <button id="postAdd" type="button" onclick="byButtonPost('/list/add');">ADD-Post</button>
       <button id="postRemove" type="button" onclick="byButtonPost('/list/remove');">Remove-Post</button>
+      <br>
+      <input id="autoRefresh" type="checkbox"> Auto Refresh The Page
     </p>
   </body>
 </html>
