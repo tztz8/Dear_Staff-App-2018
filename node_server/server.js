@@ -10,10 +10,24 @@ console.log("Start File Done");
 
 var express = require('express');
 var app = express();
+console.log("Load Express Done");
 
-var server = app.listen(3000, function () {
-  console.log("listening. . . ");
-});
+var port = 3000;
+if (true) {
+  var https = require('https');
+  var options = {
+      key: fs.readFileSync('../Keys/sever.key').toString(),
+      cert: fs.readFileSync('../Keys/certificate.crt').toString()
+  };
+  var server = https.createServer(options, app).listen(port);
+  var helmet = require('helmet');
+  app.use(helmet());
+  console.log("Set Https Up");
+}else {
+  var server = app.listen(port);
+}
+console.log("listening on " + port);
+
 app.use(express.static("public_page"));
 app.use(express.json());
 
