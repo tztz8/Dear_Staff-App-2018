@@ -1,13 +1,13 @@
-console.log("Server is starting");
+superLog("Server is starting");
 
 var fs = require('fs'); // lib to get file
 var list = JSON.parse(fs.readFileSync("./json/list.json")); // geting the list file
 var keys = JSON.parse(fs.readFileSync("../Keys/api_keys.json")); // geting the users keys
-console.log("List and Users Files Done");
+superLog("List and Users Files Done");
 
 var express = require('express');// lib for web interfacing
 var app = express(); // loading express Lib
-console.log("Load Express Done");
+superLog("Load Express Done");
 
 var port = 3000; // seting the port number one not over and over
 if (true) { // if be https or http
@@ -19,13 +19,13 @@ if (true) { // if be https or http
   var server = https.createServer(options, app).listen(port); // making the server
   var helmet = require('helmet'); // lib for secreity
   app.use(helmet()); // using the helmet Lib
-  console.log("Set Https Up");
+  superLog("Set Https Up");
 }else {
   var server = app.listen(port); // making the server
 }
 app.use(express.static("public_page")); // using the folder in side the app as the dir for the site
 app.use(express.json()); // geting in min lib of json body from express and using the min lib
-console.log("listening on " + port);
+superLog("listening on " + port);
 
 // geting the list
 app.get('/list/get', sendListJSON); // if a get request hapen for '/list/get' lanch sendListJSON
@@ -46,7 +46,7 @@ app.post('/list/add', function (request, response) { // if a post request hapen 
     fs.writeFile('./json/list.json', JSON.stringify(list, null, 2), fileDone); // updateing the file
     function fileDone(err) {// run when done updateing the file
       if(err != null){ // was there a problem when updateing the file
-        console.log("err:" + err); // loging the problem
+        superLog("err:" + err); // loging the problem
         sendData.work = ("no, ask the admin to look at the log from the server for the err"); // set work as there was a problem
       }else {
         sendData.work = "yes"; // set work as it work
@@ -54,7 +54,7 @@ app.post('/list/add', function (request, response) { // if a post request hapen 
     }
   }else { // if the key false the do the folowing
     sendData.meg = "Access Denied";// set meg that the key faild
-    console.log("Wrong Key retive, Key:" + dataIn.key); // log the wrong key atemp
+    superLog("Wrong Key retive, Key:" + dataIn.key); // log the wrong key atemp
   }
   response.send(sendData);// sending back of what hapen
 });
@@ -93,7 +93,7 @@ app.post('/list/remove', function (request, response) { // if a post request hap
   }else {// if the key false the do the folowing
     sendData.meg = "Access Denied";// set meg that the key faild
     sendData.work = "no";// set work that it faild
-    console.log("Wrong Key retive, Key:" + dataIn.key);// log the wrong key atemp
+    superLog("Wrong Key retive, Key:" + dataIn.key);// log the wrong key atemp
   }
   response.send(sendData);// sending back of what hapen
 });
@@ -121,4 +121,21 @@ function testKey(name, key) {
     }
     return false;// can't find user with at key
   }
+}
+// super log add the date that it hapen
+function superLog(data) {
+  var d = new Date();
+  console.log(
+    d.getMonth() +
+    "/" +
+    d.getDate() +
+    "/" +
+    d.getFullYear() +
+    " at " +
+    d.getHours() +
+    ":" +
+    d.getMinutes() +
+    "  " +
+    data
+  );
 }
