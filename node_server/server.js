@@ -7,7 +7,9 @@ superLog("List and Users Files Done");
 
 var express = require('express');// lib for web interfacing
 var app = express(); // loading express Lib
-superLog("Load Express Done");
+var cors = require('cors');
+app.use(cors());
+superLog("Load Express and CORS Done");
 
 var port = 3000; // seting the port number one not over and over
 if (true) { // if be https or http
@@ -51,12 +53,13 @@ app.post('/list/add', function (request, response) { // if a post request hapen 
       }else {
         sendData.work = "yes"; // set work as it work
       }
+      response.send(sendData);// sending back of what hapen
     }
   }else { // if the key false the do the folowing
     sendData.meg = "Access Denied";// set meg that the key faild
     superLog("Wrong Key retive, Key:" + dataIn.key); // log the wrong key atemp
   }
-  response.send(sendData);// sending back of what hapen
+  if(!keyPass){response.send(sendData);}// sending back of what hapen}
 });
 // remove a item from the list
 app.post('/list/remove', function (request, response) { // if a post request hapen for '/list/remove' do the folowing
