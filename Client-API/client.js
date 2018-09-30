@@ -1,4 +1,4 @@
-var url = "https://localhost:3000";
+var url = "https://home.tftinker.club:3000";
 function getListFromAPI() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
