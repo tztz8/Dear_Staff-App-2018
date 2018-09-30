@@ -1,64 +1,79 @@
+var aRF = false;
 function setup() {
   noCanvas();
-  //createCanvas(400,400);
-  //background(51);
   loadJSON('/list/get', gotData);
 
-  var button = select('#add');
-  button.mousePressed(addByButton);
-  var buttonPost = select('#postAdd');
-  buttonPost.mousePressed(addByButtonPost);
+  var autoRefreshCheckbox = select("#autoRefresh");
+  if (sessionStorage.getItem("aRF") == "true"){
+    aRF = true;
+    autoRefreshCheckbox.attribute('checked', null);
+    myRefresh(false, "");
+  }else {
+    aRF = false;
+    select('#name').value("temp");
+    select('#key').value("H7Wba2FsnIGuUncnKHgHxZeIUzdd1v%ZsIgprzlyaq9RwW&%v$q*BiJvnDChjW*TH2dy4Id4o6d97r1x%WkmnrPV$J5j@Wnp@$eA");
+  }
+  autoRefreshCheckbox.input(function () {aRF = !aRF; sessionStorage.setItem("aRF", aRF);});
 }
-
-/*function draw() {
-}*/
 
 function gotData(data) {
-  createP("<br><br>Bad Items:");
+  createP("<br>Bad Items:");
+  var itmes = [];
   for (var i = 0; i < data.length; i++) {
-    createP(data[i][0]);
-  }
-  createP("<br><br>Good Items:");
-  for (var i = 0; i < data.length; i++) {
-    createP(data[i][1]);
-  }
-}
-
-function addByButton() {
-  var keyIn = select('#key').value();
-  var badIn = select('#bad').value();
-  var goodIn = select('#good').value();
-  console.log(keyIn, badIn, goodIn);
-
-  loadJSON('/list/add/' + keyIn + '/' + badIn + '/' + goodIn, function (dataBack) {
-    /*if(dataBack.meg == "Access Granted"){
-      loadJSON('/list/get', gotDataUpdate);
+    if(!(i == 0)){
+      itmes.push("<br>" + data[i][0]);
     }else {
-      alert(dataBack.meg);
-    }*/
-    console.log(dataBack);
-  });
+      itmes.push(data[i][0]);
+    }
+  }
+  createP(itmes);
+  itmes = [];
+  createP("<br>Good Items:");
+  for (var i = 0; i < data.length; i++) {
+    if(!(i == 0)){
+      itmes.push("<br>" + data[i][1]);
+    }else {
+      itmes.push(data[i][1]);
+    }
+  }
+  createP(itmes);
 }
 
-function addByButtonPost() {
+function byButtonPost(url) {
   var data = {
+    name: select('#name').value(),
     key: select('#key').value(),
     badItme: select('#bad').value(),
     goodItme: select('#good').value()
   }
-  console.log(data.keyIn, data.badIn, data.goodIn);
+  console.log(data.name, data.key, data.badItme, data.goodItme);
 
-  httpPost('/list/add/', 'json', data, callBackFun, errorFun);
+  httpPost(url, 'json', data, callBackFun, errorFun);
   function callBackFun(result) {
     console.log(result);
+    myRefresh(true, result);
   }
   function errorFun(err) {
     console.log(err);
   }
 }
 
-function gotDataUpdate(data) {
-  createP("<br><br>Upate:");
-  createP(data[data.length-1][0]);
-  createP(data[data.length-1][1]);
+function myRefresh(notStart, result) {
+  if(aRF & notStart){
+    sessionStorage.setItem("name", select('#name').value());
+    sessionStorage.setItem("key", select('#key').value());
+    sessionStorage.setItem("badItme", select('#bad').value());
+    sessionStorage.setItem("goodItme", select('#good').value());
+    sessionStorage.setItem("result", result.work);
+    document.location.reload(true);
+  }else if (!notStart) {
+    select('#name').value(sessionStorage.getItem("name"));
+    select('#key').value(sessionStorage.getItem("key"));
+    select('#bad').value(sessionStorage.getItem("badItme"));
+    select('#good').value(sessionStorage.getItem("goodItme"));
+    if((!(sessionStorage.getItem("result") == "null")) & (!(sessionStorage.getItem("result") == ""))){
+      alert(sessionStorage.getItem("result"));
+      sessionStorage.setItem("result", null);
+    }
+  }
 }

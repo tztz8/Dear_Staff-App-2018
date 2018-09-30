@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Alternative Swearing</string>
+    <string name="app_tile_warning">Warning This App Uses Foul Language</string>
+    <string name="bad_button">What you think:</string>
+    <string name="bad_text">Error BadItem 0 missing</string>
+    <string name="good_button">What you say:</string>
+    <string name="good_text">Error GoodItem 0 missing</string>
+    <string name="setings_button">setings</string>
+    <string name="error_title">Oops! Sorry!</string>
+    <string name="error_button_text">OK</string>
 </resources>
