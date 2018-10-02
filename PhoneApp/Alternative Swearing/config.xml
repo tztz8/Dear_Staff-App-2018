@@ -2,10 +2,10 @@
 <widget id="club.tftinker.alternativeswearing" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Alternative Swearing</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        By using this can case less probles at work and other pubik aieras wile geting your pont a cross.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="support@tftinker.club" href="https://www.tftinker.club/Dear_Staff-App-2018/Web_App/index.html">
+        Timbre Freeman
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
