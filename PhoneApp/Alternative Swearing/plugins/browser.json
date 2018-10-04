@@ -1,0 +1,73 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "club.tftinker.alternativeswearing"
+        }
+    }
+}
